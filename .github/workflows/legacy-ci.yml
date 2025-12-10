@@ -1,0 +1,31 @@
+name: legacy-ci
+
+# Legacy portal build/check. Runs on the shared self-hosted Ubuntu runner.
+# Base template — customise the build step for your deploy.
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/legacy-ci.yml'
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Environment
+        run: |
+          echo "Runner: $(hostname)"
+          echo "User:   $(whoami)"
+
+      # ------------------------------------------------------------------
+      # Build step — contributors customise the commands below.
+      # ------------------------------------------------------------------
+      - name: Build legacy portal
+        run: |
+          echo "Building legacy portal..."
+          python3 --version || true
+          bash -c 'echo build-ok'
